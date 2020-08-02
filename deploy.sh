@@ -28,4 +28,4 @@ git push
 cd ..
 git add public
 git commit -m 'update submodule'
-git push
+git push origin page
