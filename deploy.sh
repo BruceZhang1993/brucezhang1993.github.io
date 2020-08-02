@@ -22,10 +22,10 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push
+git push origin page
 
 # Update master public submodule
 cd ..
 git add public
 git commit -m 'update submodule'
-git push origin page
+git push
