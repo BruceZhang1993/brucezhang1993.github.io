@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/bruceutut
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.brucezhang.cf
+  * I am bruceutut (https://keybase.io/bruceutut) on keybase.
+  * I have a public key ASD_IzQ97i_KLluSCTt68q8LuUod8ZIbZOhFNnVBvTxiswo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120033296f82395d01fb2a9632ed96e7a3791de609540216c04f0cb9694e376bbcf0a",
+      "host": "keybase.io",
+      "kid": "0120ff23343dee2fca2e5b92093b7af2af0bb94a1df1921b64e845367541bd3c62b30a",
+      "uid": "0e41bbf7f9c423787d65fafc5b9aa219",
+      "username": "bruceutut"
+    },
+    "merkle_root": {
+      "ctime": 1517812430,
+      "hash": 
+"d8e9ec263242c1686dac3fd09a2056e0161c053c8f4f6cab3b5ddd40aa9c69eb9a4a7694091cb51f04870a8d0ec8f72dce142e035deca6955f82cceeaf19c2cc",
+      "hash_meta": "9151ba36e09daa2412065f285a29e7518b0ea0619d64ffbbb3972500eb801ae4",
+      "seqno": 2033616
+    },
+    "service": {
+      "hostname": "blog.brucezhang.cf",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.40"
+  },
+  "ctime": 1517812467,
+  "expire_in": 504576000,
+  "prev": "a0efc5988dc55ce91c0586cd48a7345cb7f1e95bbf1a75e72b94ad6f788b8a87",
+  "seqno": 74,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg/yM0Pe4vyi5bkgk7evKvC7lKHfGSG2ToRTZ1Qb08YrMKp3BheWxvYWTFA0x7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwMDMzMjk2ZjgyMzk1ZDAxZmIyYTk2MzJlZDk2ZTdhMzc5MWRlNjA5NTQwMjE2YzA0ZjBjYjk2OTRlMzc2YmJjZjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwZmYyMzM0M2RlZTJmY2EyZTViOTIwOTNiN2FmMmFmMGJiOTRhMWRmMTkyMWI2NGU4NDUzNjc1NDFiZDNjNjJiMzBhIiwidWlkIjoiMGU0MWJiZjdmOWM0MjM3ODdkNjVmYWZjNWI5YWEyMTkiLCJ1c2VybmFtZSI6ImJydWNldXR1dCJ9LCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTUxNzgxMjQzMCwiaGFzaCI6ImQ4ZTllYzI2MzI0MmMxNjg2ZGFjM2ZkMDlhMjA1NmUwMTYxYzA1M2M4ZjRmNmNhYjNiNWRkZDQwYWE5YzY5ZWI5YTRhNzY5NDA5MWNiNTFmMDQ4NzBhOGQwZWM4ZjcyZGNlMTQyZTAzNWRlY2E2OTU1ZjgyY2NlZWFmMTljMmNjIiwiaGFzaF9tZXRhIjoiOTE1MWJhMzZlMDlkYWEyNDEyMDY1ZjI4NWEyOWU3NTE4YjBlYTA2MTlkNjRmZmJiYjM5NzI1MDBlYjgwMWFlNCIsInNlcW5vIjoyMDMzNjE2fSwic2VydmljZSI6eyJob3N0bmFtZSI6ImJsb2cuYnJ1Y2V6aGFuZy5jZiIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjQwIn0sImN0aW1lIjoxNTE3ODEyNDY3LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6ImEwZWZjNTk4OGRjNTVjZTkxYzA1ODZjZDQ4YTczNDVjYjdmMWU5NWJiZjFhNzVlNzJiOTRhZDZmNzg4YjhhODciLCJzZXFubyI6NzQsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RAB3XePK5fuPO6BpIyKJuw/tG+fvRLNymRAhIvgwyYYP2lYy+6bNC+JojTvfn1JLehMdjWrHCo5UfK35ZViiv0AqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIBd86p0qLmu12AhZDD0F6MPqtMVuP2T7YEIkuhgzb/7Ho3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bruceutut
+
+==================================================================
