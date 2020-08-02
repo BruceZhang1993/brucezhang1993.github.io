@@ -23,3 +23,9 @@ git commit -m "$msg"
 
 # Push source and build repos.
 git push
+
+# Update master public submodule
+cd ..
+git add public
+git commit -m 'update submodule'
+git push
