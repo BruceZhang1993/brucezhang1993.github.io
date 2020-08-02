@@ -3,5 +3,5 @@
 	url = https://github.com/reuixiy/hugo-theme-meme.git
 [submodule "public"]
 	path = public
-	url = https://github.com/BruceZhang1993/brucezhang1993.github.io.git
+	url = git@github.com:BruceZhang1993/brucezhang1993.github.io.git
 	branch = page
