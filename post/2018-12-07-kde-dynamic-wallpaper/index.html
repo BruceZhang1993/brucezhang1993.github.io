@@ -60,7 +60,7 @@
         "description": "(下文中所有的 你的用户名 请自行替换) 首先，我们先说明所谓的 macOS……",
         "inLanguage" : "zh-CN",
         "articleSection": "post",
-        "wordCount":  1528 ,
+        "wordCount":  1549 ,
         "image": ["https://blog.brucezhang.cf/assets/img/20181207/images.png"],
         "author": {
             "@type": "Person",
@@ -151,7 +151,7 @@
             
         
             
-                <li class="menu-item"><a href="https://www.brucezhang.cf"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
                 </li>
             
         
@@ -231,7 +231,7 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1528</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1549</span>
     
     
         
@@ -331,15 +331,43 @@ kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group o
 <p>这里当然要用上超级好用的 SYSTEMD! (Selling my underpants!)</p>
 <p>我们要新建一个用户单元用于执行换壁纸的任务，另一个用户定时器用来定时执行前面的脚本。</p>
 <p>首先，我们新建一个文件，假如文件路径为 <code>/home/你的用户名/.config/systemd/user/wallpaper-hourly.service</code></p>
-<pre><code>[Unit]
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
 Description=Set wallpaper according to hour
 
 [Service]
 Type=oneshot
 ExecStart=/home/你的用户名/bin/wallpaper_timechange
-</code></pre><p>这个脚本很简单，运行它就执行一遍换壁纸脚本。</p>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这个脚本很简单，运行它就执行一遍换壁纸脚本。</p>
 <p>第二个就是定时脚本，我们可以很方便的使用 systemd 编写定时器任务 <del>(See U Crontab)</del>，再假如文件路径为 <code>/home/你的用户名/.config/systemd/user/wallpaper-hourly.timer</code></p>
-<pre><code>[Unit]
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
 Description=Change wallpaper hourly
 
 [Timer]
@@ -351,13 +379,24 @@ Unit=wallpaper-hourly.service
 
 [Install]
 WantedBy=timers.target
-</code></pre><p>这个定时器指定了两个任务，一个是 <code>OnBootSec</code>，任务是开机后 10 秒执行，另一个是小时周期任务，预订为每小时 0 分 0 秒执行，安排上了！</p>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这个定时器指定了两个任务，一个是 <code>OnBootSec</code>，任务是开机后 10 秒执行，另一个是小时周期任务，预订为每小时 0 分 0 秒执行，安排上了！</p>
 <p>保存这两个文件以后，记住两个脚本的名称～</p>
 <p>然后进入终端，运行下面的命令们</p>
-<pre><code>systemctl --user daemon-reload # 重载用户单元
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">systemctl --user daemon-reload # 重载用户单元
 systemctl --user enable wallpaper-hourly.timer # 开机自启动定时器
 systemctl --user start wallpaper-hourly.timer # 运行定时器
-</code></pre><p>然后可以使用 <code>systemctl --user status wallpaper-hourly.timer</code> 检查一下是否正常启动，然后可以看到下次执行时间的显示如下</p>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>然后可以使用 <code>systemctl --user status wallpaper-hourly.timer</code> 检查一下是否正常启动，然后可以看到下次执行时间的显示如下</p>
 <pre><code>...
 Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
 ...
@@ -499,7 +538,7 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
                     </li>
                 
                     <li class="related-item">
-                        <a href="/post/2017-11-29-screen-recorder-peek/" class="related-link">[Linux] 可能是最好用的屏幕录制软件 -- Peek</a>
+                        <a href="/post/2017-11-29-screen-recorder-peek/" class="related-link">[Linux] 可能是最好用的屏幕录制软件 &ndash; Peek</a>
                     </li>
                 
             </ul>
@@ -639,6 +678,32 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
 
 
 
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
 
 
 
