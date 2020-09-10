@@ -5,3 +5,6 @@
 	path = public
 	url = git@github.com:BruceZhang1993/brucezhang1993.github.io.git
 	branch = page
+[submodule "themes/stack"]
+	path = themes/stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack.git

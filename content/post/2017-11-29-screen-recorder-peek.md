@@ -11,13 +11,13 @@ backtotop = true
 
 本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 -- [Peek](https://github.com/phw/peek){:target="_blank"}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
 
-| 项目名称 | Peek                                                                          |
-| -------- |
-| 项目描述 | an animated GIF recorder                                                      |
-| 维护者   | [phw](https://github.com/phw){:target="_blank"}                               |
-| 授权协议 | [GPL-3](https://github.com/phw/peek/blob/master/LICENSE){:target="_blank"}    |
-| 下载地址 | <https://github.com/phw/peek/releases>{:target="_blank"}                      |
-| 官方文档 | [README](https://github.com/phw/peek/blob/master/README.md){:target="_blank"} |
+| 项目名称 | Peek |
+| --- | --- |
+| 项目描述 | an animated GIF recorder |
+| 维护者 | [phw](https://github.com/phw) |
+| 授权协议 | [GPL-3](https://github.com/phw/peek/blob/master/LICENSE) |
+| 下载地址 | <https://github.com/phw/peek/releases> |
+| 官方文档 | [README](https://github.com/phw/peek/blob/master/README.md) |
 
 ---
 
