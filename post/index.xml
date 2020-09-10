@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on BZBlog</title>
+    <link>https://brucezhang1993.github.io/post/</link>
+    <description>Recent content in Posts on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Apr 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</title>
+      <link>https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 14 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/</guid>
+      <description>本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
+env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb</description>
+    </item>
+    
+    <item>
+      <title>[Linux] 给 Arch Linux 配置启动画面 (UEFI)</title>
+      <link>https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/</guid>
+      <description>Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往官网了解此项目，本文参考了 Arch Wiki 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。
+0. 准备工作 Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。
+1. 安装 首先，你需要在 Arch Linux 下安装 plymouth 软件包，该软件包目前在 plymouthAUR中提供，你也可以使用 Arch Linux CN 源，并使用 pacman -S plymouth 直接安装它。
+GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM  2. 配置钩子 Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。
+首先打开 /etc/mkinitcpio.conf ，找到 HOOKS 一行，检查是否包含 systemd 钩子。如果你正在使用 systemd 钩子，添加 sd-plymouth 钩子如下</description>
+    </item>
+    
+    <item>
+      <title>[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</title>
+      <link>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</guid>
+      <description>(下文中所有的 你的用户名 请自行替换)
+首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
+1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
+首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.</description>
+    </item>
+    
+    <item>
+      <title>[Linux] 关于 Skylake 的 VP9 解码支持</title>
+      <link>https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/</guid>
+      <description>Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
+2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
+Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
+3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
+4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
+vainfo: VA-API version: 1.</description>
+    </item>
+    
+    <item>
+      <title>[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</title>
+      <link>https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/</guid>
+      <description>这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
+dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
+1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.</description>
+    </item>
+    
+    <item>
+      <title>[Android] 在 Travis CI 上编译并部署 Flutter 应用</title>
+      <link>https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/</guid>
+      <description>这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 官方文档 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 Building Flutter APKs and IPAs on Travis 一文的后半部分。
+0. 准备工作 在自动编译之前，首先需要根据 Preparing an Android App for Release 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。 在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：
+signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39;] keyPassword keystoreProperties[&amp;#39;keyPassword&amp;#39;] storeFile file(keystoreProperties[&amp;#39;storeFile&amp;#39;]) storePassword keystoreProperties[&amp;#39;storePassword&amp;#39;] } } 在 Travis CI 配置之前，先进入 Travis CI，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。
+1. Travis CI 配置 os: linux language: android licenses: - android-sdk-preview-license-.</description>
+    </item>
+    
+    <item>
+      <title>[Linux] 可能是最好用的屏幕录制软件 -- Peek</title>
+      <link>https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/</guid>
+      <description>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+   项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK+ &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
+OpenSUSE Tumbleweed zypper install peek
+Arch Linux (AUR) yaourt -S peek
+Ubuntu sudo add-apt-repository ppa:peek-developers/stable sudo apt update sudo apt install peek Debian sudo apt install cmake valac libgtk-3-dev libkeybinder-3.</description>
+    </item>
+    
+  </channel>
+</rss>

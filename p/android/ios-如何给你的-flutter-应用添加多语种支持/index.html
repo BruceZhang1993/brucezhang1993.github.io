@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
+dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
+1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.'>
+    
+	<title>[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Android/iOS] 如何给你的 Flutter 应用添加多语种支持'>
+<meta property='og:description' content='这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
+dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
+1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Android/iOS] 如何给你的 Flutter 应用添加多语种支持">
+<meta name="twitter:description" content="这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
+dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
+1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations."><meta property='article:section' content='Post' /><meta property='article:tag' content='flutter' /><meta property='article:tag' content='android' /><meta property='article:tag' content='l10n' /><meta property='article:published_time' content='2018-10-29T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-10-29T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/">[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 29, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。</p>
+<h2 id="0-准备">0. 准备</h2>
+<p>首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 <strong>pubspec.yaml</strong>，在里面添加 <strong>flutter_localizations</strong> 内容如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">dependencies</span>:
+  <span style="color:#66d9ef">flutter</span>:
+    <span style="color:#66d9ef">sdk</span>: flutter
+  <span style="color:#66d9ef">flutter_localizations</span>:
+    <span style="color:#66d9ef">sdk</span>: flutter
+
+  <span style="color:#75715e"># The following adds the Cupertino Icons font to your application.</span>
+  <span style="color:#75715e"># Use with the CupertinoIcons class for iOS style icons.</span>
+  <span style="color:#66d9ef">cupertino_icons</span>: ^<span style="color:#ae81ff">0.1.2</span>
+  <span style="color:#75715e"># Other dependencies</span>
+</code></pre></div><p>添加以后在项目根目录执行 <code>flutter packages get</code> 更新依赖关系。</p>
+<h2 id="1-添加多语言">1. 添加多语言</h2>
+<p>准备完成以后，我们要给 <strong>lib/main.dart</strong> 中的 MaterialApp 稍作修改，示例如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter_localizations/flutter_localizations.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        <span style="color:#66d9ef">const</span> Locale(<span style="color:#e6db74">&#39;en&#39;</span>, <span style="color:#e6db74">&#39;US&#39;</span>), <span style="color:#75715e">// English
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> Locale(<span style="color:#e6db74">&#39;zh&#39;</span>, <span style="color:#e6db74">&#39;CN&#39;</span>), <span style="color:#75715e">// Simplified Chinese
+</span><span style="color:#75715e"></span>      ],
+      debugShowCheckedModeBanner: <span style="color:#66d9ef">false</span>,
+      title: <span style="color:#e6db74">&#39;ngXDA&#39;</span>,
+      theme: <span style="color:#66d9ef">new</span> ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
+      home: <span style="color:#66d9ef">new</span> HomePage(),
+    );
+  }
+}
+</code></pre></div><p>这里的关键是添加 <strong>localizationsDelegates</strong> 和 <strong>supportedLocales</strong>，然后添加支持的语种到 <strong>supportedLocales</strong>，Flutter 目前默认支持超过 <a class="link" href="https://github.com/flutter/flutter/tree/master/packages/flutter_localizations/lib/src/l10n"  target="_blank" rel="noopener"
+    >27 种语言</a>，添加的两个 Delegate 是 Flutter 默认提供的，加入以后会为比如右键菜单，组件提示等 Flutter 自带组件添加多语言支持。</p>
+<p>加入 Flutter 自带组件的本地化以后，我们继续为应用内容添加多语言支持。</p>
+<h2 id="2-应用多语言">2. 应用多语言</h2>
+<p>进入项目，创建文件名称类似 <strong>lib/localization.dart</strong>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/foundation.dart&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppLocalizations</span> {
+  AppLocalizations(<span style="color:#66d9ef">this</span>.locale);
+  <span style="color:#66d9ef">final</span> Locale locale;
+
+  <span style="color:#66d9ef">static</span> AppLocalizations of(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Localizations.of<span style="color:#f92672">&lt;</span>AppLocalizations<span style="color:#f92672">&gt;</span>(context, AppLocalizations);
+  }
+
+  <span style="color:#66d9ef">static</span> Map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span>, Map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;&gt;</span> _localizedValues <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#39;settings&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Settings&#39;</span>,
+      <span style="color:#e6db74">&#39;yes&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Yes&#39;</span>,
+      <span style="color:#e6db74">&#39;no&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;No&#39;</span>,
+    },
+    <span style="color:#e6db74">&#39;zh&#39;</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#39;settings&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;设置&#39;</span>,
+      <span style="color:#e6db74">&#39;yes&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;是&#39;</span>,
+      <span style="color:#e6db74">&#39;no&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;否&#39;</span>,
+    },
+  };
+
+  Map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">String</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">get</span> translate {
+    <span style="color:#66d9ef">return</span> _localizedValues[locale.languageCode];
+  }
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppLocalizationsDelegate</span> <span style="color:#66d9ef">extends</span> LocalizationsDelegate<span style="color:#f92672">&lt;</span>AppLocalizations<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">const</span> AppLocalizationsDelegate();
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">bool</span> isSupported(Locale locale) <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;en&#39;</span>, <span style="color:#e6db74">&#39;zh&#39;</span>].contains(locale.languageCode);
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Future<span style="color:#f92672">&lt;</span>AppLocalizations<span style="color:#f92672">&gt;</span> load(Locale locale) {
+    <span style="color:#75715e">// Returning a SynchronousFuture here because an async &#34;load&#34; operation
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// isn&#39;t needed to produce an instance of DemoLocalizations.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> SynchronousFuture<span style="color:#f92672">&lt;</span>AppLocalizations<span style="color:#f92672">&gt;</span>(AppLocalizations(locale));
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">bool</span> shouldReload(AppLocalizationsDelegate old) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>;
+}
+</code></pre></div><p>上面的文件内容定义了一个 Delegate 用于翻译本地化字符串  <strong>AppLocalizationsDelegate</strong></p>
+<p>定义好以后，我们需要在 MaterialApp 中引入，我们对 <strong>lib/main.dart</strong> 再次修改：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// imports
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter_localizations/flutter_localizations.dart&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:ngxda/localization.dart&#39;</span>;
+
+<span style="color:#66d9ef">void</span> main() <span style="color:#f92672">=&gt;</span> runApp(<span style="color:#66d9ef">new</span> Main());
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> MaterialApp(
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        <span style="color:#66d9ef">const</span> Locale(<span style="color:#e6db74">&#39;en&#39;</span>, <span style="color:#e6db74">&#39;US&#39;</span>), <span style="color:#75715e">// English
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> Locale(<span style="color:#e6db74">&#39;zh&#39;</span>, <span style="color:#e6db74">&#39;CN&#39;</span>), <span style="color:#75715e">// Simplified Chinese
+</span><span style="color:#75715e"></span>      ],
+      debugShowCheckedModeBanner: <span style="color:#66d9ef">false</span>,
+      title: <span style="color:#e6db74">&#39;ngXDA&#39;</span>,
+      theme: <span style="color:#66d9ef">new</span> ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
+      home: <span style="color:#66d9ef">new</span> HomePage(),
+    );
+  }
+}
+</code></pre></div><p>这里添加了 import 引入刚刚定义的 <strong>AppLocalizationsDelegate</strong>，然后在 <strong>localizationsDelegates</strong> 中引入了它，这里就完成了应用内的多语种支持。</p>
+<h2 id="3-应用使用多语种">3. 应用使用多语种</h2>
+<p>在应用内的组件内使用自定义多语种也是非常简单，在需要翻译的页面如下的方式引入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:ngxda/localization.dart&#39;</span>;
+</code></pre></div><p>然后，你就可以这样使用 <strong>AppLocalizationsDelegate</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">String</span> translated <span style="color:#f92672">=</span> AppLocalizations.of(context).translate[<span style="color:#e6db74">&#39;settings&#39;</span>];
+print(translated); <span style="color:#75715e">// 英文环境显示 Settings，中文环境显示 设置
+</span></code></pre></div><p><strong>The End</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/flutter">Flutter</a>
+        
+        <a href="/tags/android">Android</a>
+        
+        <a href="/tags/l10n">L10n</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+        <h1 class="widget-title">Related contents</h1>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    <article class="">
+    <a href="https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Android] 在 Travis CI 上编译并部署 Flutter 应用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

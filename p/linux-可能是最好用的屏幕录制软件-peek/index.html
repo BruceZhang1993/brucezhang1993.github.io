@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+   项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK&#43; &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
+OpenSUSE Tumbleweed zypper install peek
+Arch Linux (AUR) yaourt -S peek
+Ubuntu sudo add-apt-repository ppa:peek-developers/stable sudo apt update sudo apt install peek Debian sudo apt install cmake valac libgtk-3-dev libkeybinder-3.'>
+    
+	<title>[Linux] 可能是最好用的屏幕录制软件 -- Peek</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Linux] 可能是最好用的屏幕录制软件 -- Peek'>
+<meta property='og:description' content='本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+   项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK&#43; &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
+OpenSUSE Tumbleweed zypper install peek
+Arch Linux (AUR) yaourt -S peek
+Ubuntu sudo add-apt-repository ppa:peek-developers/stable sudo apt update sudo apt install peek Debian sudo apt install cmake valac libgtk-3-dev libkeybinder-3.'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Linux] 可能是最好用的屏幕录制软件 -- Peek">
+<meta name="twitter:description" content="本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+   项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK&#43; &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
+OpenSUSE Tumbleweed zypper install peek
+Arch Linux (AUR) yaourt -S peek
+Ubuntu sudo add-apt-repository ppa:peek-developers/stable sudo apt update sudo apt install peek Debian sudo apt install cmake valac libgtk-3-dev libkeybinder-3."><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='recorder' /><meta property='article:tag' content='录屏' /><meta property='article:published_time' content='2017-11-29T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2017-11-29T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/">[Linux] 可能是最好用的屏幕录制软件 -- Peek</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 29, 2017</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &ndash; <a class="link" href="https://github.com/phw/peek"  target="_blank" rel="noopener"
+    >Peek</a>{:target=&rdquo;_blank&rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。</p>
+<table>
+<thead>
+<tr>
+<th>项目名称</th>
+<th>Peek</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目描述</td>
+<td>an animated GIF recorder</td>
+</tr>
+<tr>
+<td>维护者</td>
+<td><a class="link" href="https://github.com/phw"  target="_blank" rel="noopener"
+    >phw</a></td>
+</tr>
+<tr>
+<td>授权协议</td>
+<td><a class="link" href="https://github.com/phw/peek/blob/master/LICENSE"  target="_blank" rel="noopener"
+    >GPL-3</a></td>
+</tr>
+<tr>
+<td>下载地址</td>
+<td><a href="https://github.com/phw/peek/releases">https://github.com/phw/peek/releases</a></td>
+</tr>
+<tr>
+<td>官方文档</td>
+<td><a class="link" href="https://github.com/phw/peek/blob/master/README.md"  target="_blank" rel="noopener"
+    >README</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="运行依赖">运行依赖</h2>
+<ul>
+<li>GTK+ &gt;= 3.14</li>
+<li>GLib &gt;= 2.38</li>
+<li>libkeybinder3</li>
+<li>FFmpeg</li>
+<li>gifski (Improved GIF)</li>
+</ul>
+<hr>
+<h2 id="安装">安装</h2>
+<h3 id="gentoo">Gentoo</h3>
+<p><code>emerge media-video/peek</code></p>
+<h3 id="opensuse-tumbleweed">OpenSUSE Tumbleweed</h3>
+<p><code>zypper install peek</code></p>
+<h3 id="arch-linux-aur">Arch Linux (AUR)</h3>
+<p><code>yaourt -S peek</code></p>
+<h3 id="ubuntu">Ubuntu</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo add-apt-repository ppa:peek-developers/stable
+sudo apt update
+sudo apt install peek
+</code></pre></div><h3 id="debian">Debian</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install cmake valac libgtk-3-dev libkeybinder-3.0-dev libxml2-utils gettext txt2man
+git clone https://github.com/phw/peek.git
+mkdir peek/build
+cd peek/build
+cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>/usr -DGSETTINGS_COMPILE<span style="color:#f92672">=</span>OFF ..
+make package
+sudo dpkg -i peek-*-Linux.deb
+</code></pre></div><h3 id="fedora">Fedora</h3>
+<p><strong>启用</strong> <a class="link" href="https://rpmfusion.org/Configuration"  target="_blank" rel="noopener"
+    >RPM Fusion</a>{:target=&rdquo;_blank&rdquo;} reposity 并安装 FFmpeg.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:/Bajoja/Fedora_25/home:Bajoja.repo
+sudo dnf install peek
+sudo dnf install gstreamer1-plugins-ugly
+</code></pre></div><h3 id="other-from-source">Other (From Source)</h3>
+<p>使用软件管理器安装运行依赖</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/phw/peek.git
+mkdir peek/build
+cd peek/build
+cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>/usr/local ..
+make
+
+<span style="color:#75715e"># Run directly from source</span>
+./peek
+
+<span style="color:#75715e"># Install system wide</span>
+sudo make install
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/linux">Linux</a>
+        
+        <a href="/tags/recorder">Recorder</a>
+        
+        <a href="/tags/%E5%BD%95%E5%B1%8F">录屏</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

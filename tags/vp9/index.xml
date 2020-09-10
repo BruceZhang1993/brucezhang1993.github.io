@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vp9 on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/vp9/</link>
+    <description>Recent content in vp9 on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/tags/vp9/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Linux] 关于 Skylake 的 VP9 解码支持</title>
+      <link>https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/</guid>
+      <description>Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
+2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
+Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
+3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
+4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
+vainfo: VA-API version: 1.</description>
+    </item>
+    
+  </channel>
+</rss>

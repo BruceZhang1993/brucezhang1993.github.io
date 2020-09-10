@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='(下文中所有的 你的用户名 请自行替换)
+首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
+1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
+首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.'>
+    
+	<title>[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸'>
+<meta property='og:description' content='(下文中所有的 你的用户名 请自行替换)
+首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
+1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
+首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸">
+<meta name="twitter:description" content="(下文中所有的 你的用户名 请自行替换)
+首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
+1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
+首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus."><meta property='article:section' content='Post' /><meta property='article:tag' content='KDE' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='Plasma' /><meta property='article:tag' content='macOS' /><meta property='article:tag' content='mojave' /><meta property='article:published_time' content='2018-12-07T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-12-07T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/">[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 07, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>(下文中所有的 <code>你的用户名</code> 请自行替换)</p>
+<p>首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：</p>
+<p><img src="/assets/img/20181207/images.png" alt="Mojave Images"  /></p>
+<h2 id="0-获取并整理壁纸图片">0. 获取并整理壁纸图片</h2>
+<p>你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 <a class="link" href="https://www.reddit.com/r/apple/comments/8oz25c/all_16_full_resolution_macos_mojave_dynamic/"  target="_blank" rel="noopener"
+    >Reddit Page</a>，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。</p>
+<h2 id="1-编写脚本">1. 编写脚本</h2>
+<p>接下来，我们需要<del>抄</del>写两个脚本用来使壁纸变化起来。</p>
+<p>首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 <code>/home/你的用户名/bin/ksetwallpaper</code> ，后文以此路径为例，请注意对应修改为你的路径。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+<span style="color:#f92672">import</span> dbus
+<span style="color:#f92672">import</span> argparse
+
+jscript <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">var allDesktops = desktops();
+</span><span style="color:#e6db74">print (allDesktops);
+</span><span style="color:#e6db74">for (i=0;i&lt;allDesktops.length;i++) {
+</span><span style="color:#e6db74">    d = allDesktops[i];
+</span><span style="color:#e6db74">    d.wallpaperPlugin = &#34;org.kde.image&#34;;
+</span><span style="color:#e6db74">    d.currentConfigGroup = Array(&#34;Wallpaper&#34;, &#34;org.kde.image&#34;, &#34;General&#34;);
+</span><span style="color:#e6db74">    d.writeConfig(&#34;Image&#34;, &#34;file://</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;)
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;KDE Wallpaper setter&#39;</span>)
+parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;file&#39;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wallpaper file name&#39;</span>)
+args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+
+
+bus <span style="color:#f92672">=</span> dbus<span style="color:#f92672">.</span>SessionBus()
+plasma <span style="color:#f92672">=</span> dbus<span style="color:#f92672">.</span>Interface(bus<span style="color:#f92672">.</span>get_object(<span style="color:#e6db74">&#39;org.kde.plasmashell&#39;</span>, <span style="color:#e6db74">&#39;/PlasmaShell&#39;</span>),
+dbus_interface<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;org.kde.PlasmaShell&#39;</span>)
+
+plasma<span style="color:#f92672">.</span>evaluateScript(jscript <span style="color:#f92672">%</span> args<span style="color:#f92672">.</span>file)
+</code></pre></div><p>写入这个脚本以后，执行 <code>chmod +x /home/你的用户名/bin/ksetwallpaper</code> 添加可执行权限。</p>
+<p>然后是第二个脚本，目的是获取当前的小时数并且设置壁纸和锁屏壁纸。</p>
+<p>保存为 <code>/home/你的用户名/bin/wallpaper_timechange</code></p>
+<p>(假设你的壁纸保存路径为 <code>/home/你的用户名/Pictures/Wallpapers/mojave_dynamic</code>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/env bash
+</span><span style="color:#75715e"></span>hour<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date <span style="color:#e6db74">&#34;+%H&#34;</span><span style="color:#66d9ef">)</span>
+/home/你的用户名/bin/ksetwallpaper /home/你的用户名/Pictures/Wallpapers/mojave_dynamic/mojave_dynamic_<span style="color:#e6db74">${</span>hour<span style="color:#e6db74">}</span>.jpeg
+kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image <span style="color:#e6db74">&#34;/home/你的用户名/Pictures/Wallpapers/mojave_dynamic/mojave_dynamic_</span><span style="color:#e6db74">${</span>hour<span style="color:#e6db74">}</span><span style="color:#e6db74">.jpeg&#34;</span>
+</code></pre></div><p>然后依然是给这个脚本添加可执行权限 <code>chmod +x /home/你的用户名/bin/wallpaper_timechange</code></p>
+<h2 id="2-编写用户单元和定时器">2. 编写用户单元和定时器</h2>
+<p>这里当然要用上超级好用的 SYSTEMD! (Selling my underpants!)</p>
+<p>我们要新建一个用户单元用于执行换壁纸的任务，另一个用户定时器用来定时执行前面的脚本。</p>
+<p>首先，我们新建一个文件，假如文件路径为 <code>/home/你的用户名/.config/systemd/user/wallpaper-hourly.service</code></p>
+<pre><code>[Unit]
+Description=Set wallpaper according to hour
+
+[Service]
+Type=oneshot
+ExecStart=/home/你的用户名/bin/wallpaper_timechange
+</code></pre><p>这个脚本很简单，运行它就执行一遍换壁纸脚本。</p>
+<p>第二个就是定时脚本，我们可以很方便的使用 systemd 编写定时器任务 <del>(See U Crontab)</del>，再假如文件路径为 <code>/home/你的用户名/.config/systemd/user/wallpaper-hourly.timer</code></p>
+<pre><code>[Unit]
+Description=Change wallpaper hourly
+
+[Timer]
+# OnBootSec=10sec
+OnActiveSec=5sec
+OnCalendar=hourly
+Persistent=true
+Unit=wallpaper-hourly.service
+
+[Install]
+WantedBy=timers.target
+</code></pre><p>这个定时器指定了两个任务，一个是 <code>OnBootSec</code>，任务是开机后 10 秒执行，另一个是小时周期任务，预订为每小时 0 分 0 秒执行，安排上了！</p>
+<p>保存这两个文件以后，记住两个脚本的名称～</p>
+<p>然后进入终端，运行下面的命令们</p>
+<pre><code>systemctl --user daemon-reload # 重载用户单元
+systemctl --user enable wallpaper-hourly.timer # 开机自启动定时器
+systemctl --user start wallpaper-hourly.timer # 运行定时器
+</code></pre><p>然后可以使用 <code>systemctl --user status wallpaper-hourly.timer</code> 检查一下是否正常启动，然后可以看到下次执行时间的显示如下</p>
+<pre><code>...
+Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
+...
+</code></pre>
+<p>表示下次执行时间为 2018-12-07 的 22 点整。</p>
+<p>然后你的壁纸就会开始跟随你的系统时间变化哦。</p>
+<p>当然，下一步还有更加棒的完善哦，比如 SDDM 背景的修改 (也许能行吧<del>FLAG</del>)，还有就是判断当前的日出日落时间调整，夏令时的调整 (Just imagine..)</p>
+<p><strong>UPDATE 1:</strong></p>
+<p>可以修改条件为 OnActiveSec=5sec 指定 timers 运行后 5 秒运行一次任务。</p>
+<p><strong>The End</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/kde">K d e</a>
+        
+        <a href="/tags/linux">Linux</a>
+        
+        <a href="/tags/plasma">Plasma</a>
+        
+        <a href="/tags/macos">Mac o s</a>
+        
+        <a href="/tags/mojave">Mojave</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

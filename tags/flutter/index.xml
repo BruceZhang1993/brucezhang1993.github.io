@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flutter on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/flutter/</link>
+    <description>Recent content in flutter on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Oct 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</title>
+      <link>https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/</guid>
+      <description>这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
+dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
+1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.</description>
+    </item>
+    
+    <item>
+      <title>[Android] 在 Travis CI 上编译并部署 Flutter 应用</title>
+      <link>https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/</guid>
+      <description>这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 官方文档 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 Building Flutter APKs and IPAs on Travis 一文的后半部分。
+0. 准备工作 在自动编译之前，首先需要根据 Preparing an Android App for Release 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。 在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：
+signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39;] keyPassword keystoreProperties[&amp;#39;keyPassword&amp;#39;] storeFile file(keystoreProperties[&amp;#39;storeFile&amp;#39;]) storePassword keystoreProperties[&amp;#39;storePassword&amp;#39;] } } 在 Travis CI 配置之前，先进入 Travis CI，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。
+1. Travis CI 配置 os: linux language: android licenses: - android-sdk-preview-license-.</description>
+    </item>
+    
+  </channel>
+</rss>

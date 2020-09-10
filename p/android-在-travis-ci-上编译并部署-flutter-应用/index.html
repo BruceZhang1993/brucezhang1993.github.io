@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 官方文档 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 Building Flutter APKs and IPAs on Travis 一文的后半部分。
+0. 准备工作 在自动编译之前，首先需要根据 Preparing an Android App for Release 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。 在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：
+signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39;] keyPassword keystoreProperties[&amp;#39;keyPassword&amp;#39;] storeFile file(keystoreProperties[&amp;#39;storeFile&amp;#39;]) storePassword keystoreProperties[&amp;#39;storePassword&amp;#39;] } } 在 Travis CI 配置之前，先进入 Travis CI，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。
+1. Travis CI 配置 os: linux language: android licenses: - android-sdk-preview-license-.'>
+    
+	<title>[Android] 在 Travis CI 上编译并部署 Flutter 应用</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Android] 在 Travis CI 上编译并部署 Flutter 应用'>
+<meta property='og:description' content='这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 官方文档 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 Building Flutter APKs and IPAs on Travis 一文的后半部分。
+0. 准备工作 在自动编译之前，首先需要根据 Preparing an Android App for Release 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。 在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：
+signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39;] keyPassword keystoreProperties[&amp;#39;keyPassword&amp;#39;] storeFile file(keystoreProperties[&amp;#39;storeFile&amp;#39;]) storePassword keystoreProperties[&amp;#39;storePassword&amp;#39;] } } 在 Travis CI 配置之前，先进入 Travis CI，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。
+1. Travis CI 配置 os: linux language: android licenses: - android-sdk-preview-license-.'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Android] 在 Travis CI 上编译并部署 Flutter 应用">
+<meta name="twitter:description" content="这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 官方文档 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 Building Flutter APKs and IPAs on Travis 一文的后半部分。
+0. 准备工作 在自动编译之前，首先需要根据 Preparing an Android App for Release 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。 在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：
+signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39;] keyPassword keystoreProperties[&amp;#39;keyPassword&amp;#39;] storeFile file(keystoreProperties[&amp;#39;storeFile&amp;#39;]) storePassword keystoreProperties[&amp;#39;storePassword&amp;#39;] } } 在 Travis CI 配置之前，先进入 Travis CI，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。
+1. Travis CI 配置 os: linux language: android licenses: - android-sdk-preview-license-."><meta property='article:section' content='Post' /><meta property='article:tag' content='flutter' /><meta property='article:tag' content='android' /><meta property='article:tag' content='travis' /><meta property='article:published_time' content='2018-10-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-10-26T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/">[Android] 在 Travis CI 上编译并部署 Flutter 应用</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 26, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>这篇文章的内容是如何使用 Travis CI 自动编译并部署 Flutter 应用，关于如何使用 Flutter 开发请前往 <a class="link" href="https://flutter.io/docs/"  target="_blank" rel="noopener"
+    >官方文档</a> 自行学习，本文只探讨自动编译 Android，关于 iOS 的自动编译请参考 <a class="link" href="https://medium.com/@yegorj/building-flutter-apks-and-ipas-on-travis-98d84d8e9b4"  target="_blank" rel="noopener"
+    >Building Flutter APKs and IPAs on Travis</a> 一文的后半部分。</p>
+<h2 id="0-准备工作">0. 准备工作</h2>
+<p>在自动编译之前，首先需要根据 <a class="link" href="https://flutter.io/android-release/"  target="_blank" rel="noopener"
+    >Preparing an Android App for Release</a> 一文，确保本地可以编译出签名完成的 APK，这个步骤中的 key.jks 等 keystore 配置需要用在后面的步骤中。
+在完成官方 release 教程后，你的 android/app/build.gradle 可能如下面代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">signingConfigs <span style="color:#f92672">{</span>
+  release <span style="color:#f92672">{</span>
+    keyAlias keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;keyAlias&#39;</span><span style="color:#f92672">]</span>
+    keyPassword keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;keyPassword&#39;</span><span style="color:#f92672">]</span>
+    storeFile <span style="color:#a6e22e">file</span><span style="color:#f92672">(</span>keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;storeFile&#39;</span><span style="color:#f92672">])</span>
+    storePassword keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;storePassword&#39;</span><span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>在 Travis CI 配置之前，先进入 <a class="link" href="https://travis-ci.org"  target="_blank" rel="noopener"
+    >Travis CI</a>，登录并同步你要部署的仓库，给 Travis CI 足够的权限，而且要分清楚是 org 不是 com (。</p>
+<h2 id="1-travis-ci-配置">1. Travis CI 配置</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">os</span>: linux
+<span style="color:#66d9ef">language</span>: android
+<span style="color:#66d9ef">licenses</span>:
+- android-sdk-preview-license-.+
+- android-sdk-license-.+
+- google-gdk-license-.+
+<span style="color:#66d9ef">android</span>:
+  <span style="color:#66d9ef">components</span>:
+  - tools
+  - platform-tools
+  - build-tools<span style="color:#ae81ff">-27.0.2</span>
+  - android<span style="color:#ae81ff">-27</span>
+  - sys-img-armeabi-v7a-google_apis<span style="color:#ae81ff">-27</span>
+  - extra-android-m2repository
+  - extra-google-m2repository
+  - extra-google-android-support
+<span style="color:#66d9ef">jdk</span>: oraclejdk8
+<span style="color:#66d9ef">sudo</span>: <span style="color:#66d9ef">false</span>
+<span style="color:#66d9ef">addons</span>:
+  <span style="color:#66d9ef">apt</span>:
+    <span style="color:#66d9ef">sources</span>:
+    - ubuntu-toolchain-r-test
+    <span style="color:#66d9ef">packages</span>:
+    - libstdc++<span style="color:#ae81ff">6</span>
+    - fonts-droid
+<span style="color:#66d9ef">before_script</span>:
+- wget https://services.gradle.org/distributions/gradle<span style="color:#ae81ff">-4.4</span>-bin.zip
+- unzip -qq gradle<span style="color:#ae81ff">-4.4</span>-bin.zip
+- export GRADLE_HOME=$PWD/gradle<span style="color:#ae81ff">-4.4</span>
+- export PATH=$GRADLE_HOME/bin:$PATH
+- git clone https://github.com/flutter/flutter.git -b dev --depth <span style="color:#ae81ff">1</span>
+- export PATH=./flutter/bin:$PATH
+- cd ./flutter
+- git fetch origin pull/<span style="color:#ae81ff">23397</span>/head:pull_23397
+- git checkout pull_23397
+- cd ..
+<span style="color:#66d9ef">script</span>:
+- <span style="color:#e6db74">&#34;./flutter/bin/flutter -v build apk&#34;</span>
+<span style="color:#66d9ef">cache</span>:
+  <span style="color:#66d9ef">directories</span>:
+  - <span style="color:#e6db74">&#34;$HOME/.pub-cache&#34;</span>
+
+</code></pre></div><p>首先参考上面的的配置，将上面的文件保存到 Flutter 项目根目录下的 .travis.yml 文件，这个配置写了一些基本的 Flutter 编译过程，这里使用的是 dev channel 的 Flutter，所以我们从一个 pr 拉了一个修复补丁来修复 <code>lint-gradle-api could not find</code> 的问题。</p>
+<p>接下来，我们需要使用 travis 添加一些自动配置，在此之前需要先安装 travis 命令行工具，从你的包管理器中安装 gem，然后 <code>gem install travis</code> 即可安装完成，安装后 travis 可执行文件可能在 <code>/home/$USER/.gem/ruby/$RUBY_VERSION/bin/travis</code>，如有需要可添加此路径到 $PATH。</p>
+<p>然后，我们进入项目根目录，把 0 步生成的 keystore file 放在根目录下，注意这里<strong>先把 keystore file 添加到 .gitignore 文件里</strong>，避免把 keystore 提交到公开库去。</p>
+<p>接下来执行 <code>travis encrypt-file key.jks --add</code>，key.jks 为你的 keystore file 名（travis 这里可能要求你进行登录，执行 <code>travis login --org</code> 登录到 travis.org，输入你的 GitHub 用户信息即可登录），<code>--add</code> 选项会自动给 .travis.yml 添加类似下面的配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">before_install</span>:
+- openssl aes<span style="color:#ae81ff">-256</span>-cbc -K $encrypted_[secure]_key -iv $encrypted_[secure]_iv
+  -in key.jks.enc -out key.jks -d
+</code></pre></div><p>同时你的 Travis.org 后台的项目设置里会添加两个环境变量用于对称解密，保护了机密文件的安全性。</p>
+<p>接下来用 <code>travis setup releases</code>，命令可以添加自动部署到 GitHub Releases 的配置，不需要自动部署可以直接跳过，添加后的配置类似下面：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">deploy</span>:
+  <span style="color:#66d9ef">provider</span>: releases
+  <span style="color:#66d9ef">api_key</span>:
+    <span style="color:#66d9ef">secure</span>: [GitHub API Token]
+  <span style="color:#66d9ef">file</span>: app/build/outputs/apk/app-release.apk
+  <span style="color:#66d9ef">skip_cleanup</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">on</span>:
+    <span style="color:#66d9ef">tags</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>注意这里设置要部署的文件路径为 <code>app/build/outputs/apk/app-release.apk</code>，设置 <code>tags: true</code>，可以只在打 git tag 的时候自动部署，这样只要我们给 GitHub 仓库推送一个 Tag, Travis 就会自动部署到这个 Tag 对应的 Release。</p>
+<p>接下来，因为我们使用的是 API 27，我们可能需要手动同意 Android SDK 插入同意配置后如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">before_install</span>:
+- yes | sdkmanager <span style="color:#e6db74">&#34;platforms;android-27&#34;</span>
+- yes | sdkmanager <span style="color:#e6db74">&#34;build-tools;27.0.3&#34;</span>
+- openssl aes<span style="color:#ae81ff">-256</span>-cbc -K $encrypted_[secure]_key -iv $encrypted_[secure]_iv
+  -in key.jks.enc -out key.jks -d
+</code></pre></div><h2 id="2-gradle-配置">2. Gradle 配置</h2>
+<p>在 Gradle 的配置过程中，我们需要配置 KeyStore File 的 alias, key password 和 store password，我们不能直接在项目里不安全的写上这些关键信息，Travis 官方的建议是使用 Travis CI 的环境变量，于是我们需要对 Gradle 之前配置的 Release 做出修改。</p>
+<p>我们怎么判断当前的环境是本机还是 Travis CI 呢，Travis CI 默认添加了一些环境变量供我们判断，这里我们给 build.gradle 加上判断条件，加上以后如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle"><span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">def</span> isRunningOnTravis <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getenv</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CI&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;true&#34;</span>
+</code></pre></div><p>这里的 isRunningOnTravis 从环境变量中取得 $CI，如果不为空则判断是 Travis CI 编译的，方便后面来判断。</p>
+<p>接下来我们改造第 0 步的 signingConfigs。我们需要根据环境的不同设置不同的 signingConfigs，参考配置如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle"><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isRunningOnTravis<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 如果 Travis CI 编译则从环境变量中获取机密信息
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// key.jks 为 Travis CI 解密后的文件路径，不要加 .enc
+</span><span style="color:#75715e"></span>  signingConfigs <span style="color:#f92672">{</span>
+    release <span style="color:#f92672">{</span>
+      keyAlias System<span style="color:#f92672">.</span><span style="color:#a6e22e">getenv</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;keyAlias&#34;</span><span style="color:#f92672">)</span>
+      keyPassword System<span style="color:#f92672">.</span><span style="color:#a6e22e">getenv</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;keyPassword&#34;</span><span style="color:#f92672">)</span>
+      storeFile <span style="color:#a6e22e">file</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;../../key.jks&#39;</span><span style="color:#f92672">)</span>
+      storePassword System<span style="color:#f92672">.</span><span style="color:#a6e22e">getenv</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;storePassword&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 如果是本地编译，直接加载 keystoreProperitiesFile 中的配置
+</span><span style="color:#75715e"></span>  keystoreProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>keystorePropertiesFile<span style="color:#f92672">))</span>
+  signingConfigs <span style="color:#f92672">{</span>
+    release <span style="color:#f92672">{</span>
+      keyAlias keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;keyAlias&#39;</span><span style="color:#f92672">]</span>
+      keyPassword keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;keyPassword&#39;</span><span style="color:#f92672">]</span>
+      storeFile <span style="color:#a6e22e">file</span><span style="color:#f92672">(</span>keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;storeFile&#39;</span><span style="color:#f92672">])</span>
+      storePassword keystoreProperties<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;storePassword&#39;</span><span style="color:#f92672">]</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>当然，我们需要进入 travis.org，找到你的项目的 Settings 页面，在 Environment variable 下添加三个环境变量，分别是你的 alias, key password 和 store password，示例如下：</p>
+<p><img src="/assets/img/20181026/ScreenShot-20181026120850.png" alt="Environment Variables"  /></p>
+<p>于此同时，我们添加下面的选项避免 lint 过程中断了编译：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">lintOptions <span style="color:#f92672">{</span>
+  checkReleaseBuilds <span style="color:#66d9ef">false</span>
+  abortOnError <span style="color:#66d9ef">false</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="3-使用自动编译和自动部署">3. 使用自动编译和自动部署</h2>
+<p>使用过程就很简单了，每一次 git push 到 GitHub，都会触发一次编译，编译后 Travis 会检查这次 push 是不是 Tag 提交，如果是 Tag 提交，就会自动部署到这个项目的 Releases 页面。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/flutter">Flutter</a>
+        
+        <a href="/tags/android">Android</a>
+        
+        <a href="/tags/travis">Travis</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+        <h1 class="widget-title">Related contents</h1>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    <article class="">
+    <a href="https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

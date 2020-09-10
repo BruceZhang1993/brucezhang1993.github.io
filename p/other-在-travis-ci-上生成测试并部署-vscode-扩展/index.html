@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
+env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb'>
+    
+	<title>[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展'>
+<meta property='og:description' content='本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
+env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展">
+<meta name="twitter:description" content="本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
+env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb"><meta property='article:section' content='Post' /><meta property='article:tag' content='vscode' /><meta property='article:tag' content='travis' /><meta property='article:published_time' content='2019-04-14T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2019-04-14T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/">[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 14, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace
+扩展的开发以及 Marketplace 注册不在文章介绍范围内。</p>
+<h2 id="0-基本配置">0. 基本配置</h2>
+<p>我们在仓库的目录下创建 <code>.travis.yml</code> ，文件内容的开始部分示例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">env</span>:
+  <span style="color:#66d9ef">global</span>:
+    - PACKAGE_VERSION=<span style="color:#e6db74">&#34;$(node -p -e &#39;require(&#34;</span>./package.json<span style="color:#e6db74">&#34;).version&#39;)&#34;</span>
+<span style="color:#66d9ef">notifications</span>:
+  <span style="color:#66d9ef">email</span>: <span style="color:#66d9ef">false</span>
+<span style="color:#66d9ef">sudo</span>: <span style="color:#66d9ef">false</span>
+<span style="color:#66d9ef">os</span>:
+- linux
+<span style="color:#66d9ef">language</span>: node_js
+<span style="color:#66d9ef">node_js</span>:
+- <span style="color:#ae81ff">8</span>
+<span style="color:#66d9ef">addons</span>:
+  <span style="color:#66d9ef">apt</span>:
+    <span style="color:#66d9ef">packages</span>:
+    - libsecret<span style="color:#ae81ff">-1</span>-dev
+</code></pre></div><p>这个部分指定了一些基本配置</p>
+<ul>
+<li>env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量</li>
+<li>notification: 这里因为不想收到通知，所以关闭了邮件通知</li>
+<li>os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境</li>
+<li>addons: 这里安装了 VSCode 扩展打包时需要的软件包</li>
+</ul>
+<h2 id="1-添加生成及测试配置">1. 添加生成及测试配置</h2>
+<p>接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 <code>xvfb</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">before_install</span>:
+- if [ $TRAVIS_OS_NAME == <span style="color:#e6db74">&#34;linux&#34;</span> ]; then
+    export CXX=<span style="color:#e6db74">&#34;g++-4.9&#34;</span> CC=<span style="color:#e6db74">&#34;gcc-4.9&#34;</span> DISPLAY=:<span style="color:#ae81ff">99.0</span>;
+    sh -e /etc/init.d/xvfb start;
+    sleep <span style="color:#ae81ff">3</span>;
+  fi
+<span style="color:#66d9ef">script</span>:
+- npm test --silent
+- npm run vscode:prepublish
+</code></pre></div><ul>
+<li>在 before_install 中，我们启动了一个 xvfb 环境，提供无界面的 X 环境用来运行 VSCode</li>
+<li>接下来，我们在 script 中执行了 <code>npm test --silent</code> 这个过程，这里测试时会自动下载 package.json 中指定的 VSCode 版本到 <code>.vscode-test</code> ，并运行扩展内编写的测试脚本</li>
+<li>最后一步就是运行打包命令输出扩展到 out 目录了 <code>npm run vscode:prepublish</code></li>
+</ul>
+<p>在这个测试过程中因为会下载 VSCode 的特定版本到 <code>.vscode-test</code> ，我们完全可以通过 Travis CI 提供的 Cache 来加速这个过程，配置参考如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">cache</span>:
+  <span style="color:#66d9ef">directories</span>:
+    - .vscode-test
+</code></pre></div><h2 id="2-部署到-github-release">2. 部署到 GitHub Release</h2>
+<p>然后是在收到 Tag 推送的时候自动部署到 GitHub Release 的配置了，在部署之前需要写一个 before_deploy</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">before_deploy</span>:
+- npm install -g vsce
+- vsce package
+</code></pre></div><p>这里根据官方的打包流程，安装 vsce ，然后使用 vsce 把扩展打包成 <del>zip</del> vsix 包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">deploy</span>:
+  - <span style="color:#66d9ef">provider</span>: releases
+    <span style="color:#66d9ef">api_key</span>:
+      <span style="color:#66d9ef">secure</span>: [GitHub Token]
+    <span style="color:#66d9ef">file_glob</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">file</span>: <span style="color:#e6db74">&#34;*.vsix&#34;</span>
+    <span style="color:#66d9ef">skip_cleanup</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;Version ${PACKAGE_VERSION}&#34;</span>
+    <span style="color:#66d9ef">on</span>:
+      <span style="color:#66d9ef">repo</span>: [Reposity]
+      <span style="color:#66d9ef">tags</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>然后就是部署 Release 的配置，可以直接使用 <code>travis setup releases</code> 就可以直接生成了，然后只需要加一个 tags: true 即可。</p>
+<p>这里使用 file_glob: true 启用通配符文件名匹配，然后 file: *.vsix 找到打包好的扩展。</p>
+<h2 id="3-部署到-marketplace">3. 部署到 Marketplace</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">deploy</span>:
+  - <span style="color:#66d9ef">provider</span>: script
+    <span style="color:#66d9ef">script</span>: vsce publish -p $VS_TOKEN
+    <span style="color:#66d9ef">skip_cleanup</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">on</span>:
+      <span style="color:#66d9ef">repo</span>: [Reposity]
+      <span style="color:#66d9ef">tags</span>: <span style="color:#66d9ef">true</span>
+
+</code></pre></div><p>部署到 Marketplace 很简单，在 deploy 段中添加这样的提交脚本，<code>vsce publish -p $VS_TOKEN</code> 用于上传扩展包，这里的 VS_TOKEN 环境变量需要在 Marketplace 申请并添加到 Travis CI 的设置里。</p>
+<h2 id="the-end"><strong>The END</strong></h2>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/vscode">Vscode</a>
+        
+        <a href="/tags/travis">Travis</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plymouth on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/plymouth/</link>
+    <description>Recent content in Plymouth on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/tags/plymouth/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Linux] 给 Arch Linux 配置启动画面 (UEFI)</title>
+      <link>https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/</guid>
+      <description>Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往官网了解此项目，本文参考了 Arch Wiki 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。
+0. 准备工作 Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。
+1. 安装 首先，你需要在 Arch Linux 下安装 plymouth 软件包，该软件包目前在 plymouthAUR中提供，你也可以使用 Arch Linux CN 源，并使用 pacman -S plymouth 直接安装它。
+GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM  2. 配置钩子 Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。
+首先打开 /etc/mkinitcpio.conf ，找到 HOOKS 一行，检查是否包含 systemd 钩子。如果你正在使用 systemd 钩子，添加 sd-plymouth 钩子如下</description>
+    </item>
+    
+  </channel>
+</rss>

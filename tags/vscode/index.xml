@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vscode on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/vscode/</link>
+    <description>Recent content in vscode on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Apr 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</title>
+      <link>https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 14 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/</guid>
+      <description>本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
+env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb</description>
+    </item>
+    
+  </channel>
+</rss>

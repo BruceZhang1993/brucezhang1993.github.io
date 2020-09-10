@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
+2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
+Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
+3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
+4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
+vainfo: VA-API version: 1.'>
+    
+	<title>[Linux] 关于 Skylake 的 VP9 解码支持</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Linux] 关于 Skylake 的 VP9 解码支持'>
+<meta property='og:description' content='Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
+2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
+Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
+3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
+4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
+vainfo: VA-API version: 1.'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Linux] 关于 Skylake 的 VP9 解码支持">
+<meta name="twitter:description" content="Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
+2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
+Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
+3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
+4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
+vainfo: VA-API version: 1."><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='vp9' /><meta property='article:tag' content='skylake' /><meta property='article:published_time' content='2018-11-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-11-26T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/">[Linux] 关于 Skylake 的 VP9 解码支持</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 26, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。</p>
+<h2 id="0-测试环境和配置">0. 测试环境和配置</h2>
+<ul>
+<li>Arch Linux</li>
+<li>Intel i5-6200U</li>
+<li>Intel HD Graphics 520</li>
+</ul>
+<h2 id="1-安装前">1. 安装前</h2>
+<p>在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。</p>
+<h2 id="2-安装带-hybrid-支持的-libva">2. 安装带 Hybrid 支持的 libva</h2>
+<p>这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～</p>
+<p>Arch Linux 可以从 AUR 中安装 <a class="link" href="https://aur.archlinux.org/packages/libva-intel-driver-hybrid"  target="_blank" rel="noopener"
+    >libva-intel-driver-hybrid</a> 这个包。</p>
+<h2 id="3-安装-intel-hybrid-codec-driver">3. 安装 intel-hybrid-codec-driver</h2>
+<p>然后，我们接着从 AUR 安装 <a class="link" href="https://aur.archlinux.org/packages/intel-hybrid-codec-driver"  target="_blank" rel="noopener"
+    >intel-hybrid-codec-driver</a>，来给我们的<del>辣鸡</del> Skylake 插上翅膀！</p>
+<h2 id="4-各种测试">4. 各种测试</h2>
+<p>注销或重启后，我们在终端输入 <code>vainfo</code> 测试，输出结果如下：</p>
+<pre><code>vainfo: VA-API version: 1.3 (libva 2.3.0)
+vainfo: Driver version: Intel i965 driver for Intel(R) Skylake - 2.2.0
+vainfo: Supported profile and entrypoints
+      ...
+      ...
+      VAProfileVP9Profile0            : VAEntrypointVLD
+</code></pre><p>如果上面的结果中使用的驱动是 i965 并且最后出现 VP9 字样，基本可以确定已经启用 VP9 解码支持。</p>
+<p>然后我们可以使用 chrome-vaapi 打开一个 Youtube 视频开始播放，在新的标签页打开 <code>chrome://media-internals/</code> 确认视频播放是否使用 GpuDecoder</p>
+<h2 id="5-视频性能测试">5. 视频性能测试</h2>
+<p>使用的测试视频为 <a class="link" href="https://www.youtube.com/watch?v=1La4QzGeaaQ"  target="_blank" rel="noopener"
+    >https://www.youtube.com/watch?v=1La4QzGeaaQ</a>，测试使用 mpv 直接播放时长 30s，给定 mpv 参数分别使用软解和混合硬解模式。</p>
+<p>| 测试项目 | 性能指标  | 默认参数/软解 | -hwdec=vappi/VP9混合硬解 |
+| 1080P   | CPU     |  20-35%     |   &lt;10%          |
+|         | 流畅度   |  流畅 (0 Drop) | 流畅 (0 Drop)  |
+| 1080P60 | CPU     |  40-60%     |   10-15%        |
+|         | 流畅度   |  基本流畅 (35 Drop) | 流畅 (8 Drop) |
+| 1440P   | CPU     |  45-55%     |   10-20%        |
+|         | 流畅度   |  稍有卡顿 (60 Drop) | 稍有卡顿 (147 Drop) |</p>
+<p><strong>The End</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/linux">Linux</a>
+        
+        <a href="/tags/vp9">Vp9</a>
+        
+        <a href="/tags/skylake">Skylake</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

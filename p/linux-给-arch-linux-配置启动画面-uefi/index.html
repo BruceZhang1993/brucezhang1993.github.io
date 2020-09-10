@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+    <meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往官网了解此项目，本文参考了 Arch Wiki 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。
+0. 准备工作 Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。
+1. 安装 首先，你需要在 Arch Linux 下安装 plymouth 软件包，该软件包目前在 plymouthAUR中提供，你也可以使用 Arch Linux CN 源，并使用 pacman -S plymouth 直接安装它。
+GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM  2. 配置钩子 Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。
+首先打开 /etc/mkinitcpio.conf ，找到 HOOKS 一行，检查是否包含 systemd 钩子。如果你正在使用 systemd 钩子，添加 sd-plymouth 钩子如下'>
+    
+	<title>[Linux] 给 Arch Linux 配置启动画面 (UEFI)</title>
+	<link rel='canonical' href='https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/'>
+
+    
+
+<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
+    
+    
+    <meta property='og:title' content='[Linux] 给 Arch Linux 配置启动画面 (UEFI)'>
+<meta property='og:description' content='Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往官网了解此项目，本文参考了 Arch Wiki 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。
+0. 准备工作 Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。
+1. 安装 首先，你需要在 Arch Linux 下安装 plymouth 软件包，该软件包目前在 plymouthAUR中提供，你也可以使用 Arch Linux CN 源，并使用 pacman -S plymouth 直接安装它。
+GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM  2. 配置钩子 Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。
+首先打开 /etc/mkinitcpio.conf ，找到 HOOKS 一行，检查是否包含 systemd 钩子。如果你正在使用 systemd 钩子，添加 sd-plymouth 钩子如下'>
+<meta property='og:url' content='https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/'>
+<meta property='og:site_name' content='BZBlog'>
+<meta property='og:type' content='article'>
+
+
+<meta name="twitter:title" content="[Linux] 给 Arch Linux 配置启动画面 (UEFI)">
+<meta name="twitter:description" content="Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往官网了解此项目，本文参考了 Arch Wiki 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。
+0. 准备工作 Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。
+1. 安装 首先，你需要在 Arch Linux 下安装 plymouth 软件包，该软件包目前在 plymouthAUR中提供，你也可以使用 Arch Linux CN 源，并使用 pacman -S plymouth 直接安装它。
+GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM  2. 配置钩子 Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。
+首先打开 /etc/mkinitcpio.conf ，找到 HOOKS 一行，检查是否包含 systemd 钩子。如果你正在使用 systemd 钩子，添加 sd-plymouth 钩子如下"><meta property='article:section' content='Post' /><meta property='article:tag' content='Arch' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='Plymouth' /><meta property='article:published_time' content='2019-01-09T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2019-01-09T00:00:00&#43;08:00'/>
+
+    
+</head><body>
+        <div id="content">
+<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
+    <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+        <h1 class="site-name"><a href="https://brucezhang1993.github.io/">BZBlog</a></h1>
+        <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </header>
+
+    <nav class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archive/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+    </nav>
+</aside>
+
+    <div class="flex column do-not-overflow full-width">
+        <main class="main">
+            <div id="article-toolbar">
+                <a href="https://brucezhang1993.github.io/" class="back-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <article class=" main-article">
+    <header class="article-header">
+    
+
+    
+
+
+<div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/">[Linux] 给 Arch Linux 配置启动画面 (UEFI)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 09, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>Plymouth 是来自 Fedora 社区的项目，目标是提供美化内核启动过程的功能，配置前请先前往<a class="link" href="http://fedoraproject.org/wiki/Releases/FeatureBetterStartup"  target="_blank" rel="noopener"
+    >官网</a>了解此项目，本文参考了 <a class="link" href="https://wiki.archlinux.org/index.php/Plymouth"  target="_blank" rel="noopener"
+    >Arch Wiki</a> 和 Reddit 及 StackOverflow 上的一些帖子上提供的解决方案。</p>
+<h2 id="0-准备工作">0. 准备工作</h2>
+<p>Plymouth 使用 KMS 启动图形界面，在 UEFI 启动环境下，Plymouth 会使用 EFI Framebuffer，如果你无法使用 EFI Framebuffer 你可以使用 Uvesafb 方案替代，本文首先介绍 UEFI 启动环境下的配置。</p>
+<h2 id="1-安装">1. 安装</h2>
+<p>首先，你需要在 Arch Linux 下安装 <code>plymouth</code> 软件包，该软件包目前在 <a class="link" href="https://aur.archlinux.org/packages/plymouth/"  target="_blank" rel="noopener"
+    >plymouth</a><!-- raw HTML omitted -->AUR<!-- raw HTML omitted --> 中提供，你也可以使用 <a class="link" href="https://www.archlinuxcn.org/"  target="_blank" rel="noopener"
+    >Arch Linux CN 源</a>，并使用 <code>pacman -S plymouth</code> 直接安装它。</p>
+<pre><code>GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GDM
+</code></pre>
+<h2 id="2-配置钩子">2. 配置钩子</h2>
+<p>Plymouth 在 KMS 阶段就启用图形界面，所以你需要配置钩子才能使用它。</p>
+<p>首先打开 <code>/etc/mkinitcpio.conf</code> ，找到 HOOKS 一行，检查是否包含 <strong>systemd</strong> 钩子。如果你正在使用 systemd 钩子，添加 <code>sd-plymouth</code> 钩子如下</p>
+<pre><code>HOOKS=(base systemd sd-plymouth ...)
+</code></pre>
+<p>如果你没有使用 systemd 钩子，请使用 <code>plymouth</code> 钩子来替代 sd-plymouth，并添加在 base udev 之后。</p>
+<p>如果你还使用了 encrypt 磁盘加密钩子，你可能还需要使用 <code>plymouth-encrypt</code> 或 <code>sd-encrypt</code> 带替代它。</p>
+<h2 id="3-配置内核参数">3. 配置内核参数</h2>
+<p>接下来，你需要在你的引导加载器 (eg. Grub2,Systemd-boot,EFISTUB) 中添加下面的内核参数</p>
+<pre><code>quiet splash loglevel=3 rd.udev.log-priority=3 vt.global_cursor_default=0 rd.systemd.show_status=false vga=current
+</code></pre>
+<p>如果你使用 Intel Graphics 你可能还需要添加</p>
+<pre><code>i915.fastboot=1
+</code></pre>
+<p>在启动过程中，你的 UEFI 环境可能会提供品牌启动 LOGO 覆盖，如果看不惯的话，你可以添加下面的参数来禁用它</p>
+<pre><code>fbcon=nodefer
+</code></pre>
+<p>配置全部完成以后，执行 <code>mkinitcpio -p linux</code> 来重新生成你的 initrd (如果使用其他内核请对应替换)</p>
+<p>*如果你使用 Grub2 启动，修改 <code>/etc/default/grub</code> 后请别忘记 grub-mkconfig
+*如果你使用 systemd-boot 请修改 <code>/boot/loader/entries</code> 下的启动项
+*如果你使用 EFISTUB 你应该是个<del>大佬</del>吧</p>
+<h2 id="4-配置">4. 配置</h2>
+<p>如果你使用 KDE 桌面环境，你可以安装 <strong>plymouth-kcm</strong> 它提供了简单的启动画面配置界面。</p>
+<p>如果要实现 plymouth 到图形界面的平滑过渡，你需要先禁用你的 DM 例如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl disable sddm.service <span style="color:#75715e"># SDDM</span>
+systemctl disable gdm.service <span style="color:#75715e"># GDM</span>
+<span style="color:#75715e"># ...</span>
+</code></pre></div><p>然后你需要启用 plymouth 提供的对应 DM Unit</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl enable sddm-plymouth.service <span style="color:#75715e"># SDDM</span>
+systemctl enable gdm-plymouth.service <span style="color:#75715e"># GDM</span>
+<span style="color:#75715e"># ...</span>
+</code></pre></div><p>然后你需要打开你的 <strong>/etc/plymouth/plymouthd.conf</strong> 修改配置如下</p>
+<pre><code>[Daemon]
+Theme=spinner
+ShowDelay=0
+DeviceTimeout=10
+</code></pre>
+<h2 id="5-主题和美化">5. 主题和美化</h2>
+<p>AUR 中提供了一些 plymouth 主题，我们可以直接搜索安装并配置它们。</p>
+<p>例如，我们选择 plymouth-theme-arch-breeze-git 首先从 AUR 安装它，然后我们重新修改 <strong>/etc/plymouth/plymouthd.conf</strong></p>
+<pre><code>[Daemon]
+Theme=arch-breeze
+...
+</code></pre>
+<p>你也可以在 KDE 系统设置 &ndash; 开机和关机 &ndash; 启动画面 里面直接设置它。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+        <a href="/tags/arch">Arch</a>
+        
+        <a href="/tags/linux">Linux</a>
+        
+        <a href="/tags/plymouth">Plymouth</a>
+        
+    </section>
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licenced under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+</article>
+
+            <aside class="widget related-contents--wrapper">
+    
+    
+</aside>
+
+            
+                
+            
+
+            <footer class="site-footer">
+    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+    </section>
+</footer>
+        </main>
+    </div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/ts/main.js" defer></script>
+        <script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+        
+    </body>
+</html>

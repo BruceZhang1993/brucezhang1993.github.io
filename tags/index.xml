@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/</link>
+    <description>Recent content in Tags on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Apr 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://brucezhang1993.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>travis</title>
+      <link>https://brucezhang1993.github.io/tags/travis/</link>
+      <pubDate>Sun, 14 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/travis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vscode</title>
+      <link>https://brucezhang1993.github.io/tags/vscode/</link>
+      <pubDate>Sun, 14 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/vscode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Arch</title>
+      <link>https://brucezhang1993.github.io/tags/arch/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/arch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://brucezhang1993.github.io/tags/linux/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plymouth</title>
+      <link>https://brucezhang1993.github.io/tags/plymouth/</link>
+      <pubDate>Wed, 09 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/plymouth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KDE</title>
+      <link>https://brucezhang1993.github.io/tags/kde/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/kde/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macOS</title>
+      <link>https://brucezhang1993.github.io/tags/macos/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mojave</title>
+      <link>https://brucezhang1993.github.io/tags/mojave/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/mojave/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plasma</title>
+      <link>https://brucezhang1993.github.io/tags/plasma/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/plasma/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skylake</title>
+      <link>https://brucezhang1993.github.io/tags/skylake/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/skylake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vp9</title>
+      <link>https://brucezhang1993.github.io/tags/vp9/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/vp9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://brucezhang1993.github.io/tags/android/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flutter</title>
+      <link>https://brucezhang1993.github.io/tags/flutter/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>l10n</title>
+      <link>https://brucezhang1993.github.io/tags/l10n/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/l10n/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recorder</title>
+      <link>https://brucezhang1993.github.io/tags/recorder/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/recorder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>录屏</title>
+      <link>https://brucezhang1993.github.io/tags/%E5%BD%95%E5%B1%8F/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/tags/%E5%BD%95%E5%B1%8F/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
