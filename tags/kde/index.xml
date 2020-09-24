@@ -6,11 +6,7 @@
     <description>Recent content in KDE on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Dec 2018 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://brucezhang1993.github.io/tags/kde/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 07 Dec 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/kde/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</title>
       <link>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</link>
@@ -19,10 +15,11 @@
       <guid>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</guid>
       <description>(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+  Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
-#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.</description>
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.</description>
     </item>
     
   </channel>

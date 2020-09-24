@@ -6,11 +6,7 @@
     <description>Recent content in vp9 on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://brucezhang1993.github.io/tags/vp9/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/vp9/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Linux] 关于 Skylake 的 VP9 解码支持</title>
       <link>https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/</link>

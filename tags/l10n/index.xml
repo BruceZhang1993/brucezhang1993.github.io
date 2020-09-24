@@ -6,11 +6,7 @@
     <description>Recent content in l10n on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Oct 2018 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://brucezhang1993.github.io/tags/l10n/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 29 Oct 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/l10n/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</title>
       <link>https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/</link>

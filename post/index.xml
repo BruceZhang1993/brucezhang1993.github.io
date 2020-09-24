@@ -6,11 +6,7 @@
     <description>Recent content in Posts on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Apr 2019 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://brucezhang1993.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 14 Apr 2019 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</title>
       <link>https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/</link>
@@ -44,10 +40,11 @@ GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GD
       <guid>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</guid>
       <description>(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+  Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
-#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.</description>
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.</description>
     </item>
     
     <item>
@@ -96,11 +93,20 @@ signingConfigs { release { keyAlias keystoreProperties[&amp;#39;keyAlias&amp;#39
       <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
       
       <guid>https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/</guid>
-      <description>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+      <description>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;quot;_blank&amp;quot;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
    项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK+ &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
 OpenSUSE Tumbleweed zypper install peek
 Arch Linux (AUR) yaourt -S peek
 Ubuntu sudo add-apt-repository ppa:peek-developers/stable sudo apt update sudo apt install peek Debian sudo apt install cmake valac libgtk-3-dev libkeybinder-3.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://brucezhang1993.github.io/p/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/</guid>
+      <description></description>
     </item>
     
   </channel>

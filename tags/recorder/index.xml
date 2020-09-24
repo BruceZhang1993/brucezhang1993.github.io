@@ -6,18 +6,14 @@
     <description>Recent content in recorder on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Nov 2017 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://brucezhang1993.github.io/tags/recorder/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 29 Nov 2017 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/recorder/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Linux] 可能是最好用的屏幕录制软件 -- Peek</title>
       <link>https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/</link>
       <pubDate>Wed, 29 Nov 2017 00:00:00 +0800</pubDate>
       
       <guid>https://brucezhang1993.github.io/p/linux-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6%E8%BD%AF%E4%BB%B6-peek/</guid>
-      <description>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;rdquo;_blank&amp;rdquo;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
+      <description>本博客的第一篇博文，给大家介绍一款开源屏幕录制软件 &amp;ndash; Peek{:target=&amp;quot;_blank&amp;quot;}，支持直接录制内容并渲染为 GIF 图片，非常适合录制桌面短视频和演示桌面操作，无需录制视频和手动转码操作，方便快捷。
    项目名称 Peek     项目描述 an animated GIF recorder   维护者 phw   授权协议 GPL-3   下载地址 https://github.com/phw/peek/releases   官方文档 README     运行依赖  GTK+ &amp;gt;= 3.14 GLib &amp;gt;= 2.38 libkeybinder3 FFmpeg gifski (Improved GIF)   安装 Gentoo emerge media-video/peek
 OpenSUSE Tumbleweed zypper install peek
 Arch Linux (AUR) yaourt -S peek

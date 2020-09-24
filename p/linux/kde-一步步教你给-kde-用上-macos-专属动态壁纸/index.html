@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html lang="en-us"><head>
     <meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<meta name='description' content='(下文中所有的 你的用户名 请自行替换)
+    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+  Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
-#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.'>
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.'><title>[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</title>
     
-	<title>[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸</title>
-	<link rel='canonical' href='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/'>
+    <link rel='canonical' href='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/'>
 
-    
-
-<link rel="stylesheet" href="https://brucezhang1993.github.io/scss/style.min.css">
-    
-    
-    <meta property='og:title' content='[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸'>
 <meta property='og:description' content='(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+  Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
-#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus.'>
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.'>
 <meta property='og:url' content='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/'>
 <meta property='og:site_name' content='BZBlog'>
-<meta property='og:type' content='article'>
-
-
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='KDE' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='Plasma' /><meta property='article:tag' content='macOS' /><meta property='article:tag' content='mojave' /><meta property='article:published_time' content='2018-12-07T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-12-07T00:00:00&#43;08:00'/><meta property='og:image' content='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/mojave.png' />
 <meta name="twitter:title" content="[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸">
 <meta name="twitter:description" content="(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
+  Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。
-#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser.parse_args() bus = dbus."><meta property='article:section' content='Post' /><meta property='article:tag' content='KDE' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='Plasma' /><meta property='article:tag' content='macOS' /><meta property='article:tag' content='mojave' /><meta property='article:published_time' content='2018-12-07T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2018-12-07T00:00:00&#43;08:00'/>
-
-    
-</head><body>
-        <div id="content">
-<div class="container extended flex on-phone--column align-items--flex-start article-page with-toolbar">
-    <aside class="sidebar left-sidebar sticky">
+#!/usr/bin/env python3 import dbus import argparse jscript = &amp;#34;&amp;#34;&amp;#34; var allDesktops = desktops(); print (allDesktops); for (i=0;i&amp;lt;allDesktops.length;i&#43;&#43;) { d = allDesktops[i]; d.wallpaperPlugin = &amp;#34;org.kde.image&amp;#34;; d.currentConfigGroup = Array(&amp;#34;Wallpaper&amp;#34;, &amp;#34;org.kde.image&amp;#34;, &amp;#34;General&amp;#34;); d.writeConfig(&amp;#34;Image&amp;#34;, &amp;#34;file://%s&amp;#34;) } &amp;#34;&amp;#34;&amp;#34; parser = argparse.ArgumentParser(description=&amp;#39;KDE Wallpaper setter&amp;#39;) parser.add_argument(&amp;#39;file&amp;#39;, help=&amp;#39;Wallpaper file name&amp;#39;) args = parser."><meta name="twitter:card" content="">
+	<meta name="twitter:image" content='https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/mojave.png' /></head><body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -54,13 +45,13 @@
         <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
     </header>
 
-    <nav class="menu" id="main-menu">
+    <ol class="menu" id="main-menu">
         
         
         
 
         <li >
-            <a href='/'>
+            <a href='https://brucezhang1993.github.io/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -79,7 +70,7 @@
         
 
         <li >
-            <a href='/about/'>
+            <a href='https://brucezhang1993.github.io/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -97,7 +88,7 @@
         
 
         <li >
-            <a href='/archive/'>
+            <a href='https://brucezhang1993.github.io/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -109,36 +100,37 @@
 
 
                 
-                <span>Archive</span>
+                <span>Archives</span>
             </a>
         </li>
         
-    </nav>
+    </ol>
 </aside>
-
-    <div class="flex column do-not-overflow full-width">
-        <main class="main">
-            <div id="article-toolbar">
-                <a href="https://brucezhang1993.github.io/" class="back-home">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://brucezhang1993.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="15 6 9 12 15 18" />
 </svg>
 
 
 
-                    <span>Back</span>
-                </a>
-            </div>
+            <span>Back</span>
+        </a>
+    </div>
 
-            <article class=" main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <img srcset="/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/mojave_hu381a3a57968b74ad4227f5319e7dd5ee_807707_1024x0_resize_box_2.png 1024w, /p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/mojave_hu381a3a57968b74ad4227f5319e7dd5ee_807707_2000x0_resize_box_2.png 2000w"
+                    src="/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/mojave_hu381a3a57968b74ad4227f5319e7dd5ee_807707_2000x0_resize_box_2.png" width="1380" height="676" loading="lazy"
+                    alt="Featured image of post [Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸" />
+            
+        </div>
     
 
-    
-
-
-<div class="article-details">
+    <div class="article-details">
     
 
     <h2 class="article-title">
@@ -161,7 +153,16 @@
     <section class="article-content">
     <p>(下文中所有的 <code>你的用户名</code> 请自行替换)</p>
 <p>首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：</p>
-<p><img src="/assets/img/20181207/images.png" alt="Mojave Images"  /></p>
+<p><figure>
+		<a href="/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/images.png" data-size="1069x737">
+			<img srcset="/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/images_hu5229176bef86836c81c49f0533c4068c_254590_480x0_resize_box_2.png 480w, /p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/images_hu5229176bef86836c81c49f0533c4068c_254590_1024x0_resize_box_2.png 1024w"
+				src="/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/images.png" width="1069" height="737" loading="lazy"
+				alt="Mojave Images">
+		</a>
+		
+		<figcaption>Mojave Images</figcaption>
+		
+	</figure></p>
 <h2 id="0-获取并整理壁纸图片">0. 获取并整理壁纸图片</h2>
 <p>你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 <a class="link" href="https://www.reddit.com/r/apple/comments/8oz25c/all_16_full_resolution_macos_mojave_dynamic/"  target="_blank" rel="noopener"
     >Reddit Page</a>，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。</p>
@@ -251,18 +252,28 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
     
     <section class="article-tags">
         
-        <a href="/tags/kde">K d e</a>
+            
+                <a href="https://brucezhang1993.github.io/tags/kde/">K d e</a>
+            
         
-        <a href="/tags/linux">Linux</a>
+            
+                <a href="https://brucezhang1993.github.io/tags/linux/">Linux</a>
+            
         
-        <a href="/tags/plasma">Plasma</a>
+            
+                <a href="https://brucezhang1993.github.io/tags/plasma/">Plasma</a>
+            
         
-        <a href="/tags/macos">Mac o s</a>
+            
+                <a href="https://brucezhang1993.github.io/tags/macos/">Mac o s</a>
+            
         
-        <a href="/tags/mojave">Mojave</a>
+            
+                <a href="https://brucezhang1993.github.io/tags/mojave/">Mojave</a>
+            
         
     </section>
-    
+
 
     
     <section class="article-copyright">
@@ -277,28 +288,27 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
         <span>Licenced under CC BY-NC-SA 4.0</span>
     </section>
     </footer>
+
+    
 </article>
 
-            <aside class="widget related-contents--wrapper">
+    <aside class="widget related-contents--wrapper">
     
     
 </aside>
 
-            
-                
-            
+    
+        
+    
 
-            <footer class="site-footer">
+    <footer class="site-footer">
     <section class="copyright">&copy; 2020 BZBlog</section>
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank">Stack</a></b> designed by
-        <a href="https://jimmycai.com" target="_blank">Jimmy</a>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.4">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-        </main>
-    </div>
-</div>
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
 
     
@@ -361,15 +371,11 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
     </div>
 
 </div>
+            </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script>
-
-
-
-
-<script type="text/javascript" src="/ts/main.js" defer></script>
-        <script>
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
     (function () {
         const customFont = document.createElement('link');
         customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
@@ -380,6 +386,8 @@ Trigger: Fri 2018-12-07 22:00:00 CST; 29min left
         document.head.appendChild(customFont);
     }());
 </script>
-        
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
     </body>
 </html>
