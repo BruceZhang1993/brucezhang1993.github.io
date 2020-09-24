@@ -3,7 +3,7 @@ category = 'Linux'
 title = '[Linux/KDE] 一步步教你给 KDE 用上 macOS 专属动态壁纸'
 date = '2018-12-07T00:00:00+08:00'
 tags = ['KDE', 'Linux', 'Plasma', 'macOS', 'mojave']
-cover = '/assets/img/20181207/mojave.png'
+image = 'mojave.png'
 draft = false
 toc = false
 backtotop = true
@@ -13,7 +13,7 @@ backtotop = true
 
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
 
-![Mojave Images](/assets/img/20181207/images.png)
+![Mojave Images](images.png)
 
 ## 0. 获取并整理壁纸图片
 

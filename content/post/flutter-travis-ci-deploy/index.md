@@ -2,7 +2,7 @@
 title = '[Android] 在 Travis CI 上编译并部署 Flutter 应用'
 date = '2018-10-26T00:00:00+08:00'
 tags = ['flutter', 'android', 'travis']
-cover = '/assets/img/20181026/travis.png'
+cover = 'travis.png'
 draft = false
 toc = false
 backtotop = true
@@ -160,7 +160,7 @@ if (isRunningOnTravis) {
 
 当然，我们需要进入 travis.org，找到你的项目的 Settings 页面，在 Environment variable 下添加三个环境变量，分别是你的 alias, key password 和 store password，示例如下：
 
-![Environment Variables](/assets/img/20181026/ScreenShot-20181026120850.png)
+![Environment Variables](ScreenShot-20181026120850.png)
 
 于此同时，我们添加下面的选项避免 lint 过程中断了编译：
 

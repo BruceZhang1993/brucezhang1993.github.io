@@ -3,7 +3,6 @@ category = 'Linux'
 title = '[Linux] 给 Arch Linux 配置启动画面 (UEFI)'
 date = '2019-01-09T00:00:00+08:00'
 tags = ['Arch', 'Linux', 'Plymouth']
-cover = '/assets/img/20181207/mojave.png'
 draft = false
 toc = false
 backtotop = true
