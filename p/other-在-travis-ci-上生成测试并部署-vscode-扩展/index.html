@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-us"><head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
 0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
 env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
  env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb'><title>[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</title>
-    
-    <link rel='canonical' href='https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/'>
+
+<link rel='canonical' href='https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展'>
 <meta property='og:description' content='本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
@@ -20,8 +20,29 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
 <meta name="twitter:description" content="本文主要说明如何使用 Travis CI 生成、测试 VSCode 扩展，并介绍如何部署到 GitHub Release 和 VS Marketplace 扩展的开发以及 Marketplace 注册不在文章介绍范围内。
 0. 基本配置 我们在仓库的目录下创建 .travis.yml ，文件内容的开始部分示例如下：
 env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;./package.json&amp;#34;).version&amp;#39;)&amp;#34; notifications: email: false sudo: false os: - linux language: node_js node_js: - 8 addons: apt: packages: - libsecret-1-dev 这个部分指定了一些基本配置
- env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb"></head><body class="">
-        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+ env: 这里通过 package.json 拿到当前的版本号并设置到全局环境变量 notification: 这里因为不想收到通知，所以关闭了邮件通知 os/language: 这里设置系统环境为 Linux 并使用 Node.JS 8 运行环境 addons: 这里安装了 VSCode 扩展打包时需要的软件包  1. 添加生成及测试配置 接下来是写一下生成和测试的配置，这里的测试需要一个无界面运行 VSCode 的环境，所以我们用上 xvfb">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
             <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
@@ -41,7 +62,7 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/'>
+            <a href='/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -60,7 +81,7 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/about/'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -78,7 +99,7 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/archives/'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -94,8 +115,11 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
             </a>
         </li>
         
+
+        
     </ol>
 </aside>
+
             <main class="main full-width">
     <div id="article-toolbar">
         <a href="https://brucezhang1993.github.io/" class="back-home">
@@ -117,7 +141,7 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
     
 
     <h2 class="article-title">
-        <a href="https://brucezhang1993.github.io/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/">[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</a>
+        <a href="/p/other-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E5%B9%B6%E9%83%A8%E7%BD%B2-vscode-%E6%89%A9%E5%B1%95/">[Other] 在 Travis CI 上生成、测试并部署 VSCode 扩展</a>
     </h2>
 
     <footer class="article-time">
@@ -218,13 +242,9 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
     
     <section class="article-tags">
         
-            
-                <a href="https://brucezhang1993.github.io/tags/vscode/">Vscode</a>
-            
+            <a href="/tags/vscode/">vscode</a>
         
-            
-                <a href="https://brucezhang1993.github.io/tags/travis/">Travis</a>
-            
+            <a href="/tags/travis/">travis</a>
         
     </section>
 
@@ -246,24 +266,29 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
     
 </article>
 
-    <aside class="widget related-contents--wrapper">
+    <aside class="related-contents--wrapper">
     
     
 </aside>
+
 
     
         
     
 
     <footer class="site-footer">
-    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="copyright">
+        &copy; 
+        
+        2021 BZBlog
+    </section>
+    
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.4">Stack</a></b> designed by
-        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     
     <div class="pswp__bg"></div>
@@ -324,11 +349,28 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
 
     </div>
 
-</div>
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -340,8 +382,6 @@ env: global: - PACKAGE_VERSION=&amp;#34;$(node -p -e &amp;#39;require(&amp;#34;.
         document.head.appendChild(customFont);
     }());
 </script>
-<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
 
     </body>
 </html>

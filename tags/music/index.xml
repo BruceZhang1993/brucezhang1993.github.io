@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Music on BZBlog</title>
+    <link>https://brucezhang1993.github.io/tags/music/</link>
+    <description>Recent content in Music on BZBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Jun 2021 18:52:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/music/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Linux] FastOCR 小巧易用的桌面 OCR 识别工具</title>
+      <link>https://brucezhang1993.github.io/p/linux-fastocr-%E5%B0%8F%E5%B7%A7%E6%98%93%E7%94%A8%E7%9A%84%E6%A1%8C%E9%9D%A2-ocr-%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 07 Jun 2021 18:52:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-fastocr-%E5%B0%8F%E5%B7%A7%E6%98%93%E7%94%A8%E7%9A%84%E6%A1%8C%E9%9D%A2-ocr-%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/</guid>
+      <description>小巧易用的桌面 OCR 文字识别工具，原生 QML GUI 应用界面，支持多个 OCR 服务提供者，支持高精度模式和多语种（部分提供者），支持 DBus 外部调用，提供简易的图形设置界面。
+Recommanded on Linux, supported on Windows/macOS.     项目名称 FastOCR     项目描述 小巧易用的桌面 OCR 文字识别工具   维护者 BruceZhang1993   授权协议 LGPL-3   快速安装 https://github.com/BruceZhang1993/FastOCR#installation   官方文档 README     Screenshot 
+目前支持的 OCR 提供者
+ 百度 AI 文字识别服务 https://ai.baidu.com/tech/ocr 有道文字识别服务 https://ai.youdao.com/product-ocr-print.s 旷视 Face++ 文字识别服务 (Experimental) https://www.faceplusplus.com.cn/general-text-recognition/  特性
+ 通用文字识别 多语言支持 / Baidu 高精度接口支持 / Baidu DBus 支持 / Linux  支持的平台</description>
+    </item>
+    
+  </channel>
+</rss>

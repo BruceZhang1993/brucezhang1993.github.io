@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en-us"><head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
 0. 测试环境和配置  Arch Linux Intel i5-6200U Intel HD Graphics 520  1. 安装前 在开始安装之前，如果安装过 intel-media-driver(iHD) 驱动，建议先禁用或卸载，即还原默认的环境变量。
 2. 安装带 Hybrid 支持的 libva 这个包是用来替换默认的 libva 驱动的，和默认驱动的区别就是默认开启了 hybrid 支持，嘛用上 VP9 解码的第一步～
 Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
 3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
 4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
 vainfo: VA-API version: 1.'><title>[Linux] 关于 Skylake 的 VP9 解码支持</title>
-    
-    <link rel='canonical' href='https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/'>
+
+<link rel='canonical' href='https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[Linux] 关于 Skylake 的 VP9 解码支持'>
 <meta property='og:description' content='Intel Skylake 在 Linux 平台一直没有 VP9 解码的支持，于是在 Chromium VAAPI 上也就没法硬件 Youtube 视频，真的很难愉快玩耍啊。然后这篇文章讲讲如何在 Arch Linux 环境下安装 Skylake VP9 解码驱动。
@@ -29,8 +29,29 @@ vainfo: VA-API version: 1.'>
 Arch Linux 可以从 AUR 中安装 libva-intel-driver-hybrid 这个包。
 3. 安装 intel-hybrid-codec-driver 然后，我们接着从 AUR 安装 intel-hybrid-codec-driver，来给我们的辣鸡 Skylake 插上翅膀！
 4. 各种测试 注销或重启后，我们在终端输入 vainfo 测试，输出结果如下：
-vainfo: VA-API version: 1."></head><body class="">
-        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+vainfo: VA-API version: 1.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
             <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
@@ -50,7 +71,7 @@ vainfo: VA-API version: 1."></head><body class="">
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/'>
+            <a href='/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -69,7 +90,7 @@ vainfo: VA-API version: 1."></head><body class="">
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/about/'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -87,7 +108,7 @@ vainfo: VA-API version: 1."></head><body class="">
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/archives/'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -103,8 +124,11 @@ vainfo: VA-API version: 1."></head><body class="">
             </a>
         </li>
         
+
+        
     </ol>
 </aside>
+
             <main class="main full-width">
     <div id="article-toolbar">
         <a href="https://brucezhang1993.github.io/" class="back-home">
@@ -126,7 +150,7 @@ vainfo: VA-API version: 1."></head><body class="">
     
 
     <h2 class="article-title">
-        <a href="https://brucezhang1993.github.io/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/">[Linux] 关于 Skylake 的 VP9 解码支持</a>
+        <a href="/p/linux-%E5%85%B3%E4%BA%8E-skylake-%E7%9A%84-vp9-%E8%A7%A3%E7%A0%81%E6%94%AF%E6%8C%81/">[Linux] 关于 Skylake 的 VP9 解码支持</a>
     </h2>
 
     <footer class="article-time">
@@ -188,17 +212,11 @@ vainfo: Supported profile and entrypoints
     
     <section class="article-tags">
         
-            
-                <a href="https://brucezhang1993.github.io/tags/linux/">Linux</a>
-            
+            <a href="/tags/linux/">Linux</a>
         
-            
-                <a href="https://brucezhang1993.github.io/tags/vp9/">Vp9</a>
-            
+            <a href="/tags/vp9/">vp9</a>
         
-            
-                <a href="https://brucezhang1993.github.io/tags/skylake/">Skylake</a>
-            
+            <a href="/tags/skylake/">skylake</a>
         
     </section>
 
@@ -220,24 +238,29 @@ vainfo: Supported profile and entrypoints
     
 </article>
 
-    <aside class="widget related-contents--wrapper">
+    <aside class="related-contents--wrapper">
     
     
 </aside>
+
 
     
         
     
 
     <footer class="site-footer">
-    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="copyright">
+        &copy; 
+        
+        2021 BZBlog
+    </section>
+    
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.4">Stack</a></b> designed by
-        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     
     <div class="pswp__bg"></div>
@@ -298,11 +321,28 @@ vainfo: Supported profile and entrypoints
 
     </div>
 
-</div>
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -314,8 +354,6 @@ vainfo: Supported profile and entrypoints
         document.head.appendChild(customFont);
     }());
 </script>
-<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
 
     </body>
 </html>

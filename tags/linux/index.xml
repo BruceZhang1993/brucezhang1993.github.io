@@ -6,7 +6,20 @@
     <description>Recent content in Linux on BZBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jan 2019 00:00:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Jun 2021 18:52:00 +0800</lastBuildDate><atom:link href="https://brucezhang1993.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Linux] FastOCR 小巧易用的桌面 OCR 识别工具</title>
+      <link>https://brucezhang1993.github.io/p/linux-fastocr-%E5%B0%8F%E5%B7%A7%E6%98%93%E7%94%A8%E7%9A%84%E6%A1%8C%E9%9D%A2-ocr-%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 07 Jun 2021 18:52:00 +0800</pubDate>
+      
+      <guid>https://brucezhang1993.github.io/p/linux-fastocr-%E5%B0%8F%E5%B7%A7%E6%98%93%E7%94%A8%E7%9A%84%E6%A1%8C%E9%9D%A2-ocr-%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/</guid>
+      <description>小巧易用的桌面 OCR 文字识别工具，原生 QML GUI 应用界面，支持多个 OCR 服务提供者，支持高精度模式和多语种（部分提供者），支持 DBus 外部调用，提供简易的图形设置界面。
+Recommanded on Linux, supported on Windows/macOS.     项目名称 FastOCR     项目描述 小巧易用的桌面 OCR 文字识别工具   维护者 BruceZhang1993   授权协议 LGPL-3   快速安装 https://github.com/BruceZhang1993/FastOCR#installation   官方文档 README     Screenshot 
+目前支持的 OCR 提供者
+ 百度 AI 文字识别服务 https://ai.baidu.com/tech/ocr 有道文字识别服务 https://ai.youdao.com/product-ocr-print.s 旷视 Face++ 文字识别服务 (Experimental) https://www.faceplusplus.com.cn/general-text-recognition/  特性
+ 通用文字识别 多语言支持 / Baidu 高精度接口支持 / Baidu DBus 支持 / Linux  支持的平台</description>
+    </item>
+    
     <item>
       <title>[Linux] 给 Arch Linux 配置启动画面 (UEFI)</title>
       <link>https://brucezhang1993.github.io/p/linux-%E7%BB%99-arch-linux-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E7%94%BB%E9%9D%A2-uefi/</link>
@@ -28,7 +41,7 @@ GDM 用户可以直接安装 `gdm-plymouth`，它包含了 plymouth 支持的 GD
       <guid>https://brucezhang1993.github.io/p/linux/kde-%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E7%BB%99-kde-%E7%94%A8%E4%B8%8A-macos-%E4%B8%93%E5%B1%9E%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/</guid>
       <description>(下文中所有的 你的用户名 请自行替换)
 首先，我们先说明所谓的 macOS 动态壁纸并不是指动态的壁纸，而是随时间变化的壁纸，macOS 原生使用了 HEIC 文件格式，其实就是内嵌了十几张同一位置拍摄的不同时间的图片，如下：
-  Mojave Images 
+ Mojave Images 
 0. 获取并整理壁纸图片 你可以自己从 macOS 电脑提取 HEIC 文件再从里面提取上面所有的图片，当然感谢万能的 Reddit，你也可以在这里找到所有的资源 Reddit Page，然后按上面的格式排列一下所有的图片，文件名里面的数字表示当前的小时数，你可以根据自己的喜好调整黑夜的时长哦，反正晚上就用最黑的那张就好了。
 1. 编写脚本 接下来，我们需要抄写两个脚本用来使壁纸变化起来。
 首先，第一个脚本是用来修改所有桌面的壁纸的脚本，是其他网友分享的脚本，可以保存为 /home/你的用户名/bin/ksetwallpaper ，后文以此路径为例，请注意对应修改为你的路径。

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en-us"><head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
 0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
 dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
 1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
 import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.'><title>[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</title>
-    
-    <link rel='canonical' href='https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/'>
+
+<link rel='canonical' href='https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[Android/iOS] 如何给你的 Flutter 应用添加多语种支持'>
 <meta property='og:description' content='这边文章简单讲讲如何给你的 Flutter 应用添加多语种本地化支持，示例中，我们尝试为应用添加简体中文与英文的支持。
@@ -23,8 +23,29 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
 0. 准备 首先，我们需要添加一项依赖以实现多语言支持。在项目根目录找到 pubspec.yaml，在里面添加 flutter_localizations 内容如下：
 dependencies: flutter: sdk: flutter flutter_localizations: sdk: flutter # The following adds the Cupertino Icons font to your application. # Use with the CupertinoIcons class for iOS style icons. cupertino_icons: ^0.1.2 # Other dependencies 添加以后在项目根目录执行 flutter packages get 更新依赖关系。
 1. 添加多语言 准备完成以后，我们要给 lib/main.dart 中的 MaterialApp 稍作修改，示例如下所示：
-import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations."></head><body class="">
-        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39;; class Main extends StatelessWidget { @override Widget build(BuildContext context) { return new MaterialApp( localizationsDelegates: [ GlobalMaterialLocalizations.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
             <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
@@ -44,7 +65,7 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/'>
+            <a href='/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -63,7 +84,7 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/about/'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -81,7 +102,7 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
         
 
         <li >
-            <a href='https://brucezhang1993.github.io/archives/'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -97,8 +118,11 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
             </a>
         </li>
         
+
+        
     </ol>
 </aside>
+
             <main class="main full-width">
     <div id="article-toolbar">
         <a href="https://brucezhang1993.github.io/" class="back-home">
@@ -120,7 +144,7 @@ import &amp;#39;package:flutter_localizations/flutter_localizations.dart&amp;#39
     
 
     <h2 class="article-title">
-        <a href="https://brucezhang1993.github.io/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/">[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</a>
+        <a href="/p/android/ios-%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84-flutter-%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%A4%9A%E8%AF%AD%E7%A7%8D%E6%94%AF%E6%8C%81/">[Android/iOS] 如何给你的 Flutter 应用添加多语种支持</a>
     </h2>
 
     <footer class="article-time">
@@ -272,17 +296,11 @@ print(translated); <span style="color:#75715e">// 英文环境显示 Settings，
     
     <section class="article-tags">
         
-            
-                <a href="https://brucezhang1993.github.io/tags/flutter/">Flutter</a>
-            
+            <a href="/tags/flutter/">flutter</a>
         
-            
-                <a href="https://brucezhang1993.github.io/tags/android/">Android</a>
-            
+            <a href="/tags/android/">android</a>
         
-            
-                <a href="https://brucezhang1993.github.io/tags/l10n/">L10n</a>
-            
+            <a href="/tags/l10n/">l10n</a>
         
     </section>
 
@@ -304,16 +322,16 @@ print(translated); <span style="color:#75715e">// 英文环境显示 Settings，
     
 </article>
 
-    <aside class="widget related-contents--wrapper">
+    <aside class="related-contents--wrapper">
     
     
-        <h1 class="widget-title">Related contents</h1>
+        <h2 class="section-title">Related contents</h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
                 
                     
 <article class="">
-    <a href="https://brucezhang1993.github.io/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/">
+    <a href="/p/android-%E5%9C%A8-travis-ci-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%B9%B6%E9%83%A8%E7%BD%B2-flutter-%E5%BA%94%E7%94%A8/">
         
         
 
@@ -328,19 +346,24 @@ print(translated); <span style="color:#75715e">// 英文环境显示 Settings，
     
 </aside>
 
+
     
         
     
 
     <footer class="site-footer">
-    <section class="copyright">&copy; 2020 BZBlog</section>
+    <section class="copyright">
+        &copy; 
+        
+        2021 BZBlog
+    </section>
+    
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.4">Stack</a></b> designed by
-        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     
     <div class="pswp__bg"></div>
@@ -401,11 +424,28 @@ print(translated); <span style="color:#75715e">// 英文环境显示 Settings，
 
     </div>
 
-</div>
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -417,8 +457,6 @@ print(translated); <span style="color:#75715e">// 英文环境显示 Settings，
         document.head.appendChild(customFont);
     }());
 </script>
-<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
 
     </body>
 </html>
